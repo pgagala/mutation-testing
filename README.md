@@ -62,7 +62,7 @@ Let's provide simple one:
     }
 ``` 
 
-Now test are passing, what is more we got full test coverage (with might be misleading). 
+Now test are passing, what is more we got full test coverage (which might be misleading). 
 Take a look closer if everything is fine with them.
 That is easy example, so You will probably notice that we don't have enough test cases for
 testing `divide` operation.
