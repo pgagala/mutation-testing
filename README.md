@@ -1,4 +1,4 @@
-#Why ?
+# Why ?
 
 We got a contract to implement a divide method.
 Divide operation calculates quotient and reminder as a result of that calculation.
@@ -86,7 +86,7 @@ Even change breaks the logic of algorithm after we run our tests, they will be s
 Definitely there is some missing indicator that something is wrong with that tests.  
 
        
-#What ?
+# What ?
 Mutation testing can help us with that situation.
 Describing in one sentence mutation testing are testing of tests. 
 
@@ -126,7 +126,7 @@ The fact that mutation survived is definitely not a problem. That is why those r
 (at least at that moment, or I might don't know about some super tool available currently).
 
 
-#How ?
+# How ?
 
 One of best known and good tool is a `pitest`.
 I will show how to use it using gradle plugin for that tool (https://github.com/szpak/gradle-pitest-plugin).
@@ -207,27 +207,31 @@ class CalculatorFixedSpec extends Specification {
 Quality of tests definitely increased.
 
 
-#Applying to production code
+# Applying to production code
 
 Everything looks shiny and beautiful but as always reality is now so sweet at all.
 Applying mutation testing to real production example is not so easy.
 
-##Problems:
+## Problems:
 1) As in production we got many code time necessary for performing all tests against mutants takes a long (but that can be somehow solved using `enableDefaultIncrementalAnalysis` parameter)
 2) Generating mutations and running tests against all of them is time-consuming for unit tests, for integration tests that is much worse so very possible that even mutation can be killed by one of integration tests that won't be shown (because integration tests were skipped)
 3) Reviewing mutation testing report is still manual process, so that required discipline
 
-##My suggestions:
+## My suggestions:
 1) Enable `enableDefaultIncrementalAnalysis` to save some time during performing mutation testing
 2) Narrow scope of mutation testing to place where You are working on - e.g. package/packages (then reports won't be so overwhelming). 
 E.g. I am working in `foo.bar` package, then `targetClasses` and `targetTests` should be set to `['foo.bar']  
 3) Base on unit tests not on integration tests in mutation testing (exclusion of integration tests from scope, e.g. `excludedTestClasses = ['*IntegrationSpec']` if Your tests ends with 
 IntegrationSpec) - that required reasonable code coverage in unit tests   
 
-#Links
+# Links
 https://pitest.org/quickstart/mutators/ - pitest mutators
+
 https://pitest.org/quickstart/commandline/ - pitest commands
+
 https://pitest.org/quickstart/incremental_analysis/ - pitest incremental analysis
+
 https://gradle-pitest-plugin.solidsoft.info/ - pitest gradle plugin description
+
 https://github.com/szpak/gradle-pitest-plugin/blob/master/src/main/groovy/info/solidsoft/gradle/pitest/PitestPluginExtension.groovy - all commands
 for pitest gradle plugin
