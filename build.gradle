@@ -43,7 +43,7 @@ pitest {
     //excludedTestClasses = ['*IntegrationSpec']
 
     //which methods we want to exclude from mutation testing
-    excludedMethods = ['hashCode','equals']
+    excludedMethods = ['hashCode','equals','toString']
 
     //on how many threads mutation testing should be run
     threads = 4
@@ -54,7 +54,7 @@ pitest {
     //disable generate reports inside timestamped folder every run
     timestampedReports = false
 
-    //skip analysis if codebase hasn't changed -  https://pitest.org/quickstart/incremental_analysis/
+    //skip analysis if codebase hasn't changed - https://pitest.org/quickstart/incremental_analysis/
     enableDefaultIncrementalAnalysis = true
 
     //place where pitest report should be placed - convenient not to place it in build folder (which is cleaned up during clean phase)
@@ -65,4 +65,11 @@ pitest {
 
     //file where info about incremental analysis is written
     historyOutputLocation = file('pitestReport/pitHistory.txt')
+
+    //how much time mutation test can consume in comparision to normal test run (if exceedes - then test will be timed out)
+    //e.g if set to 2 means that mutation test can run twice as long as normal test run
+    timeoutFactor = 1.5
+
+    //Constant amount of additional time to allow a test to run for (after the application of the timeoutFactor) before considering it to be stuck in an infinite loop
+    timeoutConstInMillis = 5000
 }

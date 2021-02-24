@@ -175,13 +175,20 @@ pitest {
 
     //file where info about incremental analysis is written
     historyOutputLocation = file('pitestReport/pitHistory.txt')
+
+    //how much time mutation test can consume in comparision to normal test run (if exceedes - then test will be timed out)
+    //e.g if set to 2 means that mutation test can run twice as long as normal test run
+    timeoutFactor = 1.5
+
+    //Constant amount of additional time to allow a test to run for (after the application of the timeoutFactor) before considering it to be stuck in an infinite loop
+    timeoutConstInMillis = 5000
 }
 ```
 There are more options to configure, but those shown above are most important in my opinion.
 
 2) Run `./gradlew pitest` (or `gradle pitest` without wrapper)
 
-3) In `./build/reports/pitest` there will be a `index.html` with mutation testing report
+3) In `./pitestReport` there will be a `index.html` with mutation testing report
 
 4) In report that is clearly described which mutation wasn't killed
 
@@ -197,10 +204,12 @@ class CalculatorFixedSpec extends Specification {
     Calculator calculator = new Calculator()
 
     def "Should correctly divide numbers"() {
-        when: "number are divided"
-            def result = calculator.divide(4, 3)
-        then: "correct result should be returned"
-            result == new Result(1, 1)
+        expect: "correct result should be returned"
+            calculator.divide(dividend, divider) == result
+        where:
+            dividend | divider | result
+            1        | 1       | new Result(1, 0)
+            4        | 3       | new Result(1, 1)
     }
 
     def "Should throw exception for 0 divider"() {
