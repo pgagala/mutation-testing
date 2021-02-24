@@ -1,15 +1,12 @@
 package io.github.pgagala
 
-import spock.lang.Shared
+
 import spock.lang.Specification
-
-
 /**
  * Tests without enough test cases
  */
 class CalculatorSpec extends Specification {
 
-    @Shared
     Calculator calculator = new Calculator()
 
     def "Should correctly divide numbers"() {

@@ -5,7 +5,7 @@ class Calculator {
     /**
      * Divide two numbers.
      *
-     * @return {@link Result} consists of quotient and reminder part of division
+     * @return {@link Result} consists of quotient and remainder part of division
      * <p>
      * For example:
      * divide(2,1) will return Result(2,0)
@@ -16,9 +16,9 @@ class Calculator {
             throw new IllegalArgumentException("Divider cannot be 0");
         }
         int quotient = dividend / divider;
-        int reminder = dividend % divider;
+        int remainder = dividend % divider;
 
-        return new Result(quotient, reminder);
+        return new Result(quotient, remainder);
     }
 
 }

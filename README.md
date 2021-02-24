@@ -1,7 +1,7 @@
 # Why ?
 
 We got a contract to implement a divide method.
-Divide operation calculates quotient and reminder as a result of that calculation.
+Divide operation calculates quotient and remainder as a result of that calculation.
 
 ```java
 
@@ -9,7 +9,7 @@ Result divide(int dividend, int divider);
 
 class Result {
     int quotient;
-    int reminder;
+    int remainder;
 }
 
 ```
@@ -56,9 +56,9 @@ Let's provide simple one:
             throw new IllegalArgumentException("Divider cannot be 0");
         }
         int quotient = dividend / divider;
-        int reminder = dividend % divider;
+        int remainder = dividend % divider;
 
-        return new Result(total, reminder);
+        return new Result(total, remainder);
     }
 ``` 
 
@@ -77,9 +77,9 @@ Change will be as following:
             throw new IllegalArgumentException("Divider cannot be 0");
         }
         int quotient = dividend / divider;   --->   int quotient = dividend * divider; 
-        int reminder = dividend % divider;
+        int remainder = dividend % divider;
 
-        return new Result(total, reminder);
+        return new Result(total, remainder);
     }
 ```
 Even change breaks the logic of algorithm after we run our tests, they will be still passing - that is not good.
