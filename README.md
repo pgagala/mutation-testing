@@ -166,6 +166,15 @@ pitest {
     
     //skip analysis if codebase hasn't changed -  https://pitest.org/quickstart/incremental_analysis/
     enableDefaultIncrementalAnalysis = true
+
+    //place where pitest report should be placed - convenient not to place it in build folder (which is cleaned up during clean phase)
+    reportDir = file('pitestReport')
+
+    //file where info about incremental analysis is read from
+    historyInputLocation = file('pitestReport/pitHistory.txt')
+
+    //file where info about incremental analysis is written
+    historyOutputLocation = file('pitestReport/pitHistory.txt')
 }
 ```
 There are more options to configure, but those shown above are most important in my opinion.
